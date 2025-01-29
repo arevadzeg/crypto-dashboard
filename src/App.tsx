@@ -1,8 +1,10 @@
+import Overview from "./pages/overview/Overview"
+
 function App() {
 
   return (
     <>
-      <h1>HELLO</h1>
+      <Overview />
     </>
   )
 }
