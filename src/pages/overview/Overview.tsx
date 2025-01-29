@@ -2,6 +2,8 @@ import Table from "antd/es/table";
 import { Tag } from "antd";
 import { useGetCoins } from "../../api/services/coin/useGetCoins";
 import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinHistory";
+import { useWebSocketStore } from "../../store/websocketStore";
+import { useCoinCapWebSocket } from "../../api/services/socket/socket";
 
 const calculatePriceChange = (
     history: Record<string, any>,
@@ -12,36 +14,51 @@ const calculatePriceChange = (
 ): number | null => {
     if (isLoading) return null;
 
-    const historicalData = history[coinId]?.[days];
-    const startPrice = historicalData
-        ? parseFloat(historicalData.data[0].priceUsd)
-        : currentPrice;
+    const historicalData = history[coinId]?.[days]?.data;
+    if (!historicalData || historicalData.length === 0) return null;
 
+    const targetTimestamp = Date.now() - days * 24 * 60 * 60 * 1000;
+
+    let closestEntry = historicalData.reduce((prev: any, curr: any) =>
+        Math.abs(curr.time - targetTimestamp) < Math.abs(prev.time - targetTimestamp) ? curr : prev
+    );
+
+    console.log('closestEntry', closestEntry)
+
+    const startPrice = closestEntry?.priceUsd ? parseFloat(closestEntry.priceUsd) : currentPrice;
     return ((currentPrice - startPrice) / startPrice) * 100;
 };
 
+
 const Overview = () => {
+
+
     const { isLoading: isCoinLoading, data: coinsData } = useGetCoins();
     const { historyData, isLoading: isCoinHistoryLoading } = useGetCoinsHistory();
+    const { prices } = useWebSocketStore();
 
 
+    useCoinCapWebSocket()
 
     const data = coinsData?.data.map(coin => {
-        const currentPrice = parseFloat(coin.priceUsd);
+        const wsPrice = parseFloat(prices[coin.id]);
+        const currentPrice = wsPrice || parseFloat(coin.priceUsd);
 
-        const sevenDayChange = calculatePriceChange(historyData, coin.id, 7, currentPrice, isCoinHistoryLoading) ?? 0;
-        const thirtyDayChange = calculatePriceChange(historyData, coin.id, 30, currentPrice, isCoinHistoryLoading) ?? 0;
+        const change24h = calculatePriceChange(historyData, coin.id, 1, currentPrice, isCoinHistoryLoading) ?? 0;
+        const change7d = calculatePriceChange(historyData, coin.id, 7, currentPrice, isCoinHistoryLoading) ?? 0;
+        const change30d = calculatePriceChange(historyData, coin.id, 30, currentPrice, isCoinHistoryLoading) ?? 0;
 
         return {
             key: coin.id,
             name: coin.name,
             symbol: coin.symbol,
             price: currentPrice,
-            change24h: parseFloat(coin.changePercent24Hr),
-            change7d: sevenDayChange,
-            change30d: thirtyDayChange,
+            change24h,
+            change7d,
+            change30d,
         };
     }) || [];
+
 
     const columns = [
         {

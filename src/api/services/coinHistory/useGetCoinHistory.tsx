@@ -8,20 +8,21 @@ interface CoinHistoryEntry {
     date: string;
 }
 
-interface CoinHistory {
+export interface CoinHistory {
     data: CoinHistoryEntry[];
     timestamp?: number;
 }
 
-type HistoryData = Record<string, Record<number, CoinHistory>>;
+export type HistoryData = Record<string, Record<number, CoinHistory>>;
 
 export const useGetCoinsHistory = () => {
     const { data: coinsData } = useGetCoins();
     const now = Date.now();
 
     const periods = [
-        { days: 7, interval: 'd1' },
-        { days: 30, interval: 'd1' }
+        { days: 1, interval: 'm1' },
+        { days: 7, interval: 'h1' },
+        { days: 30, interval: 'h6' }
     ];
 
     const queries = useQueries({
