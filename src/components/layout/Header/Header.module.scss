@@ -1,0 +1,41 @@
+
+
+.header {
+    background-color: $color-bg;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 0 24px;
+    gap:20px;
+    z-index: 10;
+  }
+  
+  .logoImage {
+    width: 120px;
+    height: auto;
+  }
+  
+  .navList {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+  .navLink {
+    text-decoration: none;
+    color: $color-textPrimary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color:  $color-primary;
+    border-radius: 8px;
+  }
+  
