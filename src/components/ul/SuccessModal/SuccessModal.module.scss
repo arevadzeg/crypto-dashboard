@@ -1,0 +1,49 @@
+
+.successModal {
+  :global(.ant-modal-content) {
+    background-color: $color-CardBg;
+    padding: 24px;
+  }
+
+  :global(.ant-modal-title) {
+    color: $color-PrimaryText !important;
+    font-size: $font-size-xlg !important;
+    background-color: $color-CardBg;
+
+    text-align: center;
+  }
+
+  :global(.ant-modal-close) {
+    color: $color-PrimaryText;
+  }
+}
+
+.animationContainer {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.modalContent {
+  text-align: center;
+  font-size: 1.1rem;
+  color: $color-PrimaryText;
+  
+  strong {
+    color: $color-SecondaryText;
+  }
+}
+
+.modalButton {
+  // TODO RE USE
+  padding: 8px 16px;
+  background-color: $color-BtnBg;
+  color: $color-TextOnYellow;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semi-bold;
+
+  &:hover {
+    background-color: $color-primaryHover;
+  }
+}
+
