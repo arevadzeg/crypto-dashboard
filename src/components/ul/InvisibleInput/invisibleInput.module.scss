@@ -1,0 +1,41 @@
+
+
+.invisibleInput {
+    background-color: transparent;
+    border: none;
+    color: $color-textPrimary;
+    font-size: $font-size-base;
+    direction: rtl;
+
+
+    &:focus,
+    &:hover,
+    &:focus-within {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    input {
+        background-color: transparent;
+        border: none;
+        color: $color-textPrimary;
+    }
+
+    input::placeholder {
+        color: $color-Placeholder;
+        font-size: $font-size-base;
+
+    }
+
+    input {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        -moz-appearance: textfield;
+    }
+
+}

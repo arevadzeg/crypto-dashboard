@@ -1,5 +1,5 @@
 import Overview from "./pages/overview/Overview"
-import CoinPage from "./pages/coinPage/CoinPage"
+import CoinPage from "./pages/ConvertPage/ConvertPage"
 
 import {
   BrowserRouter as Router,
@@ -18,7 +18,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route index element={<Overview />} />
-            <Route path="coin/:convertFromId/:convertToId" element={<CoinPage />} />
+            <Route path="convert/:convertFromId/:convertToId" element={<CoinPage />} />
           </Routes>
         </div>
         <footer />

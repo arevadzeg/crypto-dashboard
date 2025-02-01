@@ -1,0 +1,2 @@
+export const MIN_TRADE_AMMOUNT_IN_USD = 0.01
+export const MAX_TRADE_AMMOUNT_IN_USD = 5700000

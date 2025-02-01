@@ -1,0 +1,31 @@
+
+
+.coinInputWrapper{
+    border-radius: 12px;
+    padding: 16px 16px 32px 16px;
+    position: relative;
+    border:1px solid $color-line;
+    width: 528px;
+}
+
+.direction{
+    color: $color-TertiaryText;
+    font-weight: $font-weight-semi-bold;
+}
+
+.balance{
+    color: $color-DisabledText;
+}
+
+.coinInputHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.inputGroup {
+display: flex;
+gap: 8px;
+align-items: center;
+}

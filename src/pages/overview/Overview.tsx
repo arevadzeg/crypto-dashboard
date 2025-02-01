@@ -23,7 +23,6 @@ const calculatePriceChange = (
         Math.abs(curr.time - targetTimestamp) < Math.abs(prev.time - targetTimestamp) ? curr : prev
     );
 
-    console.log('closestEntry', closestEntry)
 
     const startPrice = closestEntry?.priceUsd ? parseFloat(closestEntry.priceUsd) : currentPrice;
     return ((currentPrice - startPrice) / startPrice) * 100;

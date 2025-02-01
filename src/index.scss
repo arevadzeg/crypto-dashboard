@@ -5,6 +5,11 @@ body{
     background-color: $color-bg;
     font-family: $font-primary;
 
+    // TODO NOT SURE
+    *{
+        box-sizing: border-box;
+    }
+
     .content{
         margin-top: $header-height;
     }

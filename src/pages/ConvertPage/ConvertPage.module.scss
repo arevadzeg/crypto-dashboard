@@ -1,0 +1,97 @@
+$content-width:528px;
+$swap-button-size:42px;
+
+.mainHeader{
+  font-size: 48px;
+  color:$color-textPrimary;
+  margin:0;
+}
+
+.subHeader{
+  color:$color-textPrimary;
+  margin-top: 0;
+
+}
+
+.pageHeaderWrapper{
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+}
+
+
+.coinInputWrapper{
+        border-radius: 12px;
+        padding: 16px 16px 32px 16px;
+        position: relative;
+        border:1px solid $color-line;
+        width: $content-width;
+}
+
+.conversionForm, .conversionCards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+
+.direction{
+  color: $color-TertiaryText;
+  font-weight: $font-weight-semi-bold;
+}
+
+.balance{
+  color: $color-DisabledText;
+}
+
+.coinInputHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+  .inputGroup {
+    display: flex;
+    gap: 8px;
+  }
+
+
+  .convertButton{
+    height: 48px;
+    background-color: $color-BtnBg;
+    color: $color-TextOnYellow;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semi-bold;
+    width: $content-width;
+  }
+
+
+  .swapButton{
+    position: absolute;
+    top: 50%; 
+    right: 50%;
+    transform: translate(50%,-50%);
+    border: 1px solid $color-Line;
+    height: $swap-button-size;
+    width: $swap-button-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: $color-BasicBg;
+    color: $color-IconNormal;
+    z-index: 10;
+    cursor: pointer;
+
+
+    &:hover{
+      border-color: $color-InputLine;
+      color:$color-textPrimary
+    }
+  }
