@@ -1,4 +1,4 @@
-import Overview from "./pages/overview/Overview"
+import Dashboard from "./pages/Dashboard/Dashboard"
 import CoinPage from "./pages/ConvertPage/ConvertPage"
 
 import {
@@ -22,6 +22,14 @@ function App() {
 
       <ConfigProvider theme={{
         components: {
+          Table: {
+            colorBgContainer: '#181A20',
+            colorBorderSecondary: '#181A20',
+            colorText: '#EAECEF',
+            colorTextHeading: '#848E9C',
+            headerBg: '#181A20',
+            rowHoverBg: '#1E2026',
+          },
           Skeleton: {
             color: "#303030",
             colorGradientEnd: "#424242"
@@ -40,7 +48,7 @@ function App() {
           <Header />
           <div className="content">
             <Routes>
-              <Route index element={<Overview />} />
+              <Route index element={<Dashboard />} />
               <Route path="convert/:convertFromId/:convertToId" element={<CoinPage />} />
               <Route path="price/:coinId" element={<PagePrice />} />
             </Routes>

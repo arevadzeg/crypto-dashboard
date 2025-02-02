@@ -1,0 +1,20 @@
+.logoWrapper{
+    display: flex;
+    gap: 8px;
+    align-items: center; 
+}
+
+.table{
+
+    :global(.ant-table-row){
+        cursor: pointer;
+    }
+}
+
+.increase{
+    color:$color-textSell
+}
+
+.decrease{
+    color:$color-textBuy
+}

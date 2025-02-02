@@ -5,7 +5,7 @@ import { useWebSocketStore } from "../../store/websocketStore";
 import { useNavigate } from "react-router";
 import Loader from "../../components/features/Loader/Loader";
 import CurrencyLogo from "../../components/features/CurrencyLogo/CurrencyLogo";
-import styles from './overview.module.scss'
+import styles from './dashboard.module.scss'
 
 const calculatePriceChange = (
     history: Record<string, any>,
@@ -31,7 +31,7 @@ const calculatePriceChange = (
 };
 
 
-const Overview = () => {
+const Dashboard = () => {
 
 
     const { isLoading: isCoinLoading, data: coinsData } = useGetCoins();
@@ -86,7 +86,7 @@ const Overview = () => {
             dataIndex: "change24h",
             key: "change24h",
             render: (change: number) => (
-                <span style={{ color: change >= 0 ? "green" : "red" }}>
+                <span className={change >= 0 ? styles.increase : styles.decrease}>
                     {change.toFixed(2)}%
                 </span>
             ),
@@ -96,7 +96,7 @@ const Overview = () => {
             dataIndex: "change7d",
             key: "change7d",
             render: (change: number) => (
-                <span style={{ color: change >= 0 ? "green" : "red" }}>
+                <span className={change >= 0 ? styles.increase : styles.decrease}>
                     {change.toFixed(2)}%
                 </span>
             ),
@@ -106,7 +106,7 @@ const Overview = () => {
             dataIndex: "change30d",
             key: "change30d",
             render: (change: number) => (
-                <span style={{ color: change >= 0 ? "green" : "red" }}>
+                <span className={change >= 0 ? styles.increase : styles.decrease}>
                     {change.toFixed(2)}%
                 </span>
             ),
@@ -126,10 +126,11 @@ const Overview = () => {
                     onRow={(record) => ({
                         onClick: () => handleNavigateToCoinPricePage(record.key)
                     })}
+                    className={styles.table}
                 />
             </Loader>
         </>
     );
 }
 
-export default Overview;
+export default Dashboard;
