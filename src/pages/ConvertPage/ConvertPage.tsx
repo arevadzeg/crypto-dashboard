@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { SwapOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import styles from './ConvertPage.module.scss';
@@ -9,6 +9,7 @@ import { useParams } from 'react-router';
 import ConverionCard from '../../components/features/ConverionCard/ConverionCard';
 import SuccessModal from '../../components/ul/SuccessModal/SuccessModal';
 import Loader from '../../components/features/Loader/Loader';
+import formatCurrencyPrice from '../../utils/formatCurrencyPrice';
 
 const CoinPage = () => {
     const { convertFromId, convertToId } = useParams();
@@ -24,31 +25,36 @@ const CoinPage = () => {
         amount: string;
         result: string;
     } | null>(null);
+    const [validationError, setValidationError] = useState<boolean | string>(false)
 
     const coins = coinsData || [];
 
+
     useEffect(() => {
         calculateConversion();
-    }, [sourceCoinId, targetCoinId, amount, coins]);
+    }, [coins]);
 
-    const calculateConversion = () => {
+    const sourceCoin = coins.find(c => c.symbol === sourceCoinId);
+    const targetCoin = coins.find(c => c.symbol === targetCoinId);
+
+    const calculateConversion = (inputAmount?: string) => {
         if (!sourceCoinId || !targetCoinId) return;
-
-        const sourceCoin = coins.find(c => c.symbol === sourceCoinId);
-        const targetCoin = coins.find(c => c.symbol === targetCoinId);
-
         if (!sourceCoin || !targetCoin) return;
         const sourcePrice = parseFloat(sourceCoin.priceUsd);
         const targetPrice = parseFloat(targetCoin.priceUsd);
 
-        const result = (parseFloat(amount) * sourcePrice) / targetPrice;
+        const result = (parseFloat(inputAmount ?? amount) * sourcePrice) / targetPrice;
         setConvertedAmount(result.toFixed(6));
     };
 
+
     const handleSwap = () => {
-        const temp = sourceCoinId;
+        const tempId = sourceCoinId;
+        const tempAmount = amount
         setSourceCoinId(targetCoinId);
-        setTargetCoinId(temp);
+        setTargetCoinId(tempId);
+        setAmount(convertedAmount)
+        setConvertedAmount(tempAmount);
     };
 
     const handleConvert = () => {
@@ -90,7 +96,12 @@ const CoinPage = () => {
                             direction='From'
                             sourceCoinId={sourceCoinId}
                             setSourceCoinId={setSourceCoinId}
-                            setAmount={setAmount}
+                            handleChange={(e) => {
+                                setAmount(e)
+                                calculateConversion(e)
+                            }}
+                            validationError={validationError}
+                            setValidationError={setValidationError}
                         />
 
                         <div className={styles.swapButton} onClick={handleSwap}>
@@ -103,14 +114,21 @@ const CoinPage = () => {
                             direction='To'
                             sourceCoinId={targetCoinId}
                             setSourceCoinId={setTargetCoinId}
-                            setAmount={setAmount}
                         />
+                    </div>
+                    <div className={styles.rateInfo}>
+                        <Tooltip title="Please note that this final convert quotation rate, which is subject to market condition, may not be equal to the spot price. The price can be refreshed.">
+                            Rate
+                        </Tooltip>
+                        <span>
+                            1 {targetCoinId} ≈ {targetCoin?.priceUsd && formatCurrencyPrice(targetCoin.priceUsd)} USD
+                        </span>
                     </div>
 
                     <Button
                         type='primary'
                         className={classNames(styles.convertButton, {
-                            [styles.disabled]: !amount || !convertedAmount
+                            [styles.disabled]: !amount || !convertedAmount || validationError
                         })}
                         onClick={handleConvert}
                     >

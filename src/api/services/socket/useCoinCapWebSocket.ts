@@ -22,15 +22,14 @@ export const useCoinCapWebSocket = () => {
             try {
                 const data = JSON.parse(msg.data);
 
-                queryClient.setQueryData(["assets"], (oldData: any) => {
-                    if (!oldData?.data) return oldData;
+                queryClient.setQueryData(["assets"], (oldData: Coin[]) => {
 
-                    const updatedData = oldData.data.map((item: Coin) => ({
+                    const updatedData = oldData.map((item: Coin) => ({
                         ...item,
                         priceUsd: data[item.id] ?? item.priceUsd,
                     }));
 
-                    return { ...oldData, data: updatedData };
+                    return updatedData
                 });
 
                 useWebSocketStore.getState().setPrices(data);

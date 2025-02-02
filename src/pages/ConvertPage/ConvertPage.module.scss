@@ -97,3 +97,11 @@ $swap-button-size:42px;
       color:$color-textPrimary
     }
   }
+
+
+  .rateInfo{
+    color: $color-TertiaryText;
+    display: flex;
+    justify-content: space-between;
+    width: $content-width;
+  }

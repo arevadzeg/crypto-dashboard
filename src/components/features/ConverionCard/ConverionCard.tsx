@@ -1,32 +1,49 @@
+import { useEffect, useMemo } from "react";
 import { Coin } from "../../../api/services/coin/coinType";
 import { useGetCoins } from "../../../api/services/coin/useGetCoins";
-import { MAX_TRADE_AMMOUNT_IN_USD, MIN_TRADE_AMMOUNT_IN_USD } from "../../../constants/constants";
-import formatNumber from "../../../utils/formatNumber";
+import { MAX_TRADE_AMOUNT_IN_USD, MIN_TRADE_AMOUNT_IN_USD } from "../../../constants/constants";
+import formatMinMaxValue from "../../../utils/formatMinMaxValue";
 import InvisibleInput from "../../ul/InvisibleInput/InvisibleInput";
 import ModalSelect from "../../ul/ModalSelect/ModalSelect";
-import styles from './ConverionCard.module.scss';
+import styles from './converionCard.module.scss';
 
 interface ConverionCardProps {
     direction: 'From' | "To";
     sourceCoinId: string;
     setSourceCoinId: React.Dispatch<React.SetStateAction<string>>;
-    setAmount: (value: React.SetStateAction<string>) => void;
+    handleChange?: (value: string) => void;
     amount: string;
     readOnly?: boolean;
+    validationError?: string | boolean
+    setValidationError?: React.Dispatch<React.SetStateAction<string | boolean>>
 }
 
 
-const ConverionCard = ({ direction, sourceCoinId, setSourceCoinId, setAmount, amount, readOnly = false }: ConverionCardProps) => {
+const ConverionCard = ({ direction, sourceCoinId, setSourceCoinId, validationError, setValidationError, handleChange = () => { }, amount, readOnly = false }: ConverionCardProps) => {
     const { data: coinsData } = useGetCoins();
     const coins = coinsData || [];
     const targetCoin = coins.find(c => c.symbol === sourceCoinId) as Coin;
 
-    const max = MAX_TRADE_AMMOUNT_IN_USD / Number(targetCoin?.priceUsd || 1);
-    const min = MIN_TRADE_AMMOUNT_IN_USD / Number(targetCoin?.priceUsd || 1);
+    useEffect(() => {
+        if (!setValidationError) return
+        if (Number(amount) > max) {
+            setValidationError("Amount is too large maximum " + formattedMax)
+        }
+        else if (Number(amount) < min && Number(amount) !== 0) {
+            setValidationError("Amount is too small minimum " + formattedMin)
+        } else {
+            setValidationError("")
+        }
+    }, [amount])
 
 
-    const formattedMin = formatNumber(min);
-    const formattedMax = formatNumber(max);
+
+    const max = useMemo(() => MAX_TRADE_AMOUNT_IN_USD / Number(targetCoin?.priceUsd || 1), [targetCoin?.priceUsd]);
+    const min = MIN_TRADE_AMOUNT_IN_USD / Number(targetCoin?.priceUsd || 1);
+
+
+    const formattedMin = formatMinMaxValue(min);
+    const formattedMax = formatMinMaxValue(max);
 
 
     return (
@@ -47,12 +64,18 @@ const ConverionCard = ({ direction, sourceCoinId, setSourceCoinId, setAmount, am
                     placeholder={`${formattedMin} - ${formattedMax}`}
                     className={styles.amountInput}
                     value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => handleChange(e.target.value)}
                     type="number"
                     min="0"
                     suffix={<span></span>}
                     readOnly={readOnly}
                 />
+
+            </div>
+            <div className={styles.error}>
+                {
+                    validationError && <span>{validationError}</span>
+                }
             </div>
         </div>
     );

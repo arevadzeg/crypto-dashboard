@@ -1,6 +1,6 @@
 import { Button, Modal } from 'antd';
 import { ModalProps } from 'antd/es/modal';
-import styles from './SuccessModal.module.scss';
+import styles from './successModal.module.scss';
 import { ReactNode } from 'react';
 import CompletedSVG from '../../svg/CompletedSVG/CompletedSVG';
 
@@ -8,7 +8,8 @@ interface SuccessModalProps extends ModalProps {
     title: string;
     content: ReactNode;
 }
-
+// TODO
+// UNFORTUNATELY, I DIDN'T HAVE ENOUGH TIME. THIS MODAL IS CURRENTLY A SUCCESS-ONLY MODAL.
 const SuccessModal = ({ title, content, open, onCancel, ...props }: SuccessModalProps) => {
     return (
         <Modal

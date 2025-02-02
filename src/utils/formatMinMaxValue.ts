@@ -1,4 +1,4 @@
-const formatNumber = (value: number): string => {
+const formatMinMaxValue = (value: number): string => {
     if (value >= 1000000) {
         return (Math.floor(value / 100000) * 100000).toLocaleString();
     } else if (value >= 1000) {
@@ -15,4 +15,4 @@ const formatNumber = (value: number): string => {
 
 
 
-export default formatNumber
+export default formatMinMaxValue

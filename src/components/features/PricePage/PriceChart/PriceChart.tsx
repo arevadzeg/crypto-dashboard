@@ -58,7 +58,10 @@ const PriceChart = () => {
                                 minTickGap={36}
                             />
                             <YAxis domain={[minPrice, maxPrice]} tickFormatter={(value) => formatCurrencyPrice(value, 0)} />
-                            <Tooltip labelFormatter={(label) => `Time: ${label}`} />
+                            <Tooltip
+                                labelFormatter={(label) => `Time: ${selectedRange === "1D" ? dayjs(label).format("HH:mm") : dayjs(label).format("MMM DD")}`}
+                                formatter={(value) => [`${formatCurrencyPrice(Number(value), 2)}`, "Price $"]}
+                            />
                             <Line type="monotone" dataKey="priceUsd" stroke="#FCD535" dot={false} />
                         </LineChart>
                     </ResponsiveContainer>

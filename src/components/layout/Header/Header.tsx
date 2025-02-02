@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import styles from './Header.module.scss';
+import styles from './header.module.scss';
 
 
 const HEADER_LIST = [
