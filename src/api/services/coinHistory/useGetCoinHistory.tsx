@@ -1,4 +1,4 @@
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import apiClient from "../../apiClient";
 import { useGetCoins } from "../coin/useGetCoins";
 
@@ -67,4 +67,30 @@ export const useGetCoinsHistory = () => {
         isLoading: queries.some(query => query.isLoading),
         error: queries.find(query => query.error)?.error
     };
+};
+
+
+
+export const useGetCoinHistory = (coinId: string, interval: string, days: number) => {
+
+
+    return useQuery<CoinHistoryEntry[], Error>({
+        queryKey: ['history', coinId, interval, days],
+
+        queryFn: async () => {
+            const now = Date.now();
+            const start = now - days * 24 * 60 * 60 * 1000;
+
+            return apiClient
+                .get(`/assets/${coinId}/history`, {
+                    params: {
+                        interval: interval,
+                        start,
+                        end: now
+                    },
+                })
+                .then((res) => res.data.data);
+        },
+    });
+
 };

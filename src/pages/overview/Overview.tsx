@@ -117,7 +117,7 @@ const Overview = () => {
                 columns={columns}
                 dataSource={data}
                 loading={isCoinLoading || isCoinHistoryLoading}
-                pagination={{ pageSize: 10 }}
+                pagination={false}
                 scroll={{ x: true }}
             />
         </>

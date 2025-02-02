@@ -1,0 +1,31 @@
+.headerWrapper {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.mainHeader {
+    font-size: 40px;
+    color: $color-textPrimary;
+    margin: 0;
+}
+
+.subHeader {
+    color: $color-textPrimary;
+    margin-top: 0;
+}
+
+.currencyHighlight {
+    color: $color-buy;
+}
+
+.skeletonTitle {
+    width: 300px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.skeletonSubtitle {
+    width: 400px;
+    display: block;
+}
