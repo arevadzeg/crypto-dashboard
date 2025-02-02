@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../../apiClient";
 import { Coin } from "./coinType";
+import ENDPOINTS from "../../endpoints";
 
 
 
@@ -11,7 +12,7 @@ export const useGetCoins = () => {
         queryKey: ["assets"],
         queryFn: async () => {
             return apiClient
-                .get('/assets', {
+                .get(ENDPOINTS.ASSETS.GET_ASSETS, {
                     params: {
                         // TODO FOR NOW HARD CODED
                         limit: 10,

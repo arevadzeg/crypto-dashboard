@@ -32,3 +32,16 @@
     width: 400px;
     display: block;
 }
+
+
+
+@media screen and (max-width: $breakpoint-sm) {
+
+    .mainHeader {
+      font-size: 32px;
+    }
+  
+    .subHeader {
+      font-size: 16px;
+    }
+}

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import dayjs from "dayjs";
 import { useGetCoinHistory } from "../../../../api/services/coinHistory/useGetCoinHistory";
 import formatCurrencyPrice from "../../../../utils/formatCurrencyPrice";
 import styles from "./priceChart.module.scss";
 import Loader from "../../Loader/Loader";
+import formatTime from "../../../../utils/formatTime";
 
 const TIME_RANGES = ["1D", "7D", "30D"] as const;
 type TimeRange = typeof TIME_RANGES[number];
 
-const TIME_RANGE_CONFIG: Record<TimeRange, { days: number; interval: string }> = {
+const TIME_RANGE_CONFIG = {
     "1D": { days: 1, interval: "m1" },
     "7D": { days: 7, interval: "h1" },
     "30D": { days: 30, interval: "h6" }
@@ -52,14 +52,12 @@ const PriceChart = () => {
                         <LineChart data={coinHistory} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                             <XAxis
                                 dataKey="time"
-                                tickFormatter={(value) =>
-                                    selectedRange === "1D" ? dayjs(value).format("HH:mm") : dayjs(value).format("MMM DD")
-                                }
+                                tickFormatter={(value) => formatTime(value, selectedRange)}
                                 minTickGap={36}
                             />
                             <YAxis domain={[minPrice, maxPrice]} tickFormatter={(value) => formatCurrencyPrice(value, 0)} />
                             <Tooltip
-                                labelFormatter={(label) => `Time: ${selectedRange === "1D" ? dayjs(label).format("HH:mm") : dayjs(label).format("MMM DD")}`}
+                                labelFormatter={(label) => `Time: ${formatTime(label, selectedRange)}`}
                                 formatter={(value) => [`${formatCurrencyPrice(Number(value), 2)}`, "Price $"]}
                             />
                             <Line type="monotone" dataKey="priceUsd" stroke="#FCD535" dot={false} />

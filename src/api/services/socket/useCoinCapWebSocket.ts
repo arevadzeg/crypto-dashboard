@@ -4,6 +4,7 @@ import { useWebSocketStore } from "../../../store/websocketStore";
 import { useGetCoins } from "../coin/useGetCoins";
 import { useQueryClient } from '@tanstack/react-query';
 import { Coin } from '../coin/coinType';
+import ENDPOINTS from '../../endpoints';
 
 export const useCoinCapWebSocket = () => {
     const { data: coins } = useGetCoins();
@@ -16,7 +17,7 @@ export const useCoinCapWebSocket = () => {
         isConnedted.current = true
 
         const assets = coins.map(coin => coin.id.toLowerCase());
-        const ws = new WebSocket(`wss://ws.coincap.io/prices?assets=${assets.join(',')}`);
+        const ws = new WebSocket(`${ENDPOINTS.WS.PRICES}?assets=${assets.join(',')}`);
 
         const handleMessage = (msg: MessageEvent) => {
             try {

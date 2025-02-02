@@ -22,14 +22,6 @@ $swap-button-size:42px;
 }
 
 
-.coinInputWrapper{
-        border-radius: 12px;
-        padding: 16px 16px 32px 16px;
-        position: relative;
-        border:1px solid $color-line;
-        width: $content-width;
-}
-
 .conversionForm, .conversionCards{
   display: flex;
   align-items: center;
@@ -38,28 +30,6 @@ $swap-button-size:42px;
   gap: 16px;
   position: relative;
 }
-
-
-.direction{
-  color: $color-TertiaryText;
-  font-weight: $font-weight-semi-bold;
-}
-
-.balance{
-  color: $color-DisabledText;
-}
-
-.coinInputHeader{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-  .inputGroup {
-    display: flex;
-    gap: 8px;
-  }
 
 
   .convertButton{
@@ -104,4 +74,28 @@ $swap-button-size:42px;
     display: flex;
     justify-content: space-between;
     width: $content-width;
+  }
+
+
+  @media screen and (max-width: $breakpoint-sm) {
+    $content-width: 100%;
+
+
+    .convertButton,
+    .rateInfo {
+      width: $content-width; 
+      max-width: 90%;
+    }
+  
+    .pageHeaderWrapper {
+      padding: 20px;
+    }
+  
+    .mainHeader {
+      font-size: 32px;
+    }
+  
+    .subHeader {
+      font-size: 16px;
+    }
   }

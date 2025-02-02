@@ -1,4 +1,6 @@
 
+$content-width:528px;
+$swap-button-size:42px;
 
 .coinInputWrapper{
     border-radius: 12px;
@@ -35,4 +37,14 @@ align-items: center;
     height: 24px;
     color: $color-Error;
     text-align: end;
+}
+
+
+@media screen and (max-width: $breakpoint-sm) {
+    $content-width: 100vw;
+
+    .coinInputWrapper {
+      width: $content-width; 
+      max-width: 90vw; 
+    }
 }

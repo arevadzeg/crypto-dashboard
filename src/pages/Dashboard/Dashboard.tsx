@@ -1,6 +1,6 @@
 import Table from "antd/es/table";
 import { useGetCoins } from "../../api/services/coin/useGetCoins";
-import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinHistory";
+import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinsHistory";
 import { useWebSocketStore } from "../../store/websocketStore";
 import { useNavigate } from "react-router";
 import Loader from "../../components/features/Loader/Loader";
@@ -18,13 +18,11 @@ const calculatePriceChange = (
 
     const historicalData = history[coinId]?.[days]?.data;
     if (!historicalData || historicalData.length === 0) return null;
-
     const targetTimestamp = Date.now() - days * 24 * 60 * 60 * 1000;
 
     let closestEntry = historicalData.reduce((prev: any, curr: any) =>
         Math.abs(curr.time - targetTimestamp) < Math.abs(prev.time - targetTimestamp) ? curr : prev
     );
-
 
     const startPrice = closestEntry?.priceUsd ? parseFloat(closestEntry.priceUsd) : currentPrice;
     return ((currentPrice - startPrice) / startPrice) * 100;
