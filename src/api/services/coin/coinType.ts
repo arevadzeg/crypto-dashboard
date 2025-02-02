@@ -12,10 +12,3 @@ export interface Coin {
     vwap24Hr: string;
     explorer: string;
 }
-
-
-
-export interface ApiResponse<T> {
-    data: T;
-    timestamp: number;
-}

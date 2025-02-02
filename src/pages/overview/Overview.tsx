@@ -1,8 +1,11 @@
 import Table from "antd/es/table";
-import { Tag } from "antd";
 import { useGetCoins } from "../../api/services/coin/useGetCoins";
 import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinHistory";
 import { useWebSocketStore } from "../../store/websocketStore";
+import { useNavigate } from "react-router";
+import Loader from "../../components/features/Loader/Loader";
+import CurrencyLogo from "../../components/features/CurrencyLogo/CurrencyLogo";
+import styles from './overview.module.scss'
 
 const calculatePriceChange = (
     history: Record<string, any>,
@@ -34,10 +37,13 @@ const Overview = () => {
     const { isLoading: isCoinLoading, data: coinsData } = useGetCoins();
     const { historyData, isLoading: isCoinHistoryLoading } = useGetCoinsHistory();
     const { prices } = useWebSocketStore();
+    const navigate = useNavigate()
+
+    const handleNavigateToCoinPricePage = (coinId: string) => navigate(`/price/${coinId}`)
+    const isTableDataLoading = isCoinLoading || isCoinHistoryLoading
 
 
-
-    const data = coinsData?.data.map(coin => {
+    const data = coinsData?.map(coin => {
         const wsPrice = parseFloat(prices[coin.id]);
         const currentPrice = wsPrice || parseFloat(coin.priceUsd);
 
@@ -67,7 +73,7 @@ const Overview = () => {
             title: "Symbol",
             dataIndex: "symbol",
             key: "symbol",
-            render: (symbol: string) => <Tag color="blue">{symbol.toUpperCase()}</Tag>,
+            render: (symbol: string) => <div className={styles.logoWrapper}> <CurrencyLogo id={symbol} alt={symbol} /> {symbol.toUpperCase()}</div>,
         },
         {
             title: "Price (USD)",
@@ -111,13 +117,17 @@ const Overview = () => {
 
     return (
         <>
-            <Table
-                columns={columns}
-                dataSource={data}
-                loading={isCoinLoading || isCoinHistoryLoading}
-                pagination={false}
-                scroll={{ x: true }}
-            />
+            <Loader isLoading={isTableDataLoading} height={'80vh'} width={'100vw'}>
+                <Table
+                    columns={columns}
+                    dataSource={data}
+                    pagination={false}
+                    scroll={{ x: true }}
+                    onRow={(record) => ({
+                        onClick: () => handleNavigateToCoinPricePage(record.key)
+                    })}
+                />
+            </Loader>
         </>
     );
 }

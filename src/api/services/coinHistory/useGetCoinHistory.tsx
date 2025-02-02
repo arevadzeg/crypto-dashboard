@@ -26,7 +26,7 @@ export const useGetCoinsHistory = () => {
     ];
 
     const queries = useQueries({
-        queries: (coinsData?.data || []).flatMap(coin =>
+        queries: (coinsData || []).flatMap(coin =>
             periods.map(period => ({
                 queryKey: ['history', coin.id, period.days],
                 queryFn: async () => {
@@ -45,7 +45,7 @@ export const useGetCoinsHistory = () => {
                             data: res.data
                         }));
                 },
-                enabled: !!coinsData?.data
+                enabled: !!coinsData
             }))
         )
     });

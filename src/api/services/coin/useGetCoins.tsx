@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../../apiClient";
-import { ApiResponse, Coin } from "./coinType";
+import { Coin } from "./coinType";
 
 
 
 export const useGetCoins = () => {
 
 
-    return useQuery<ApiResponse<Coin[]>, Error>({
+    return useQuery<Coin[], Error>({
         queryKey: ["assets"],
         queryFn: async () => {
             return apiClient
@@ -19,7 +19,7 @@ export const useGetCoins = () => {
                         order: 'desc',
                     },
                 })
-                .then((res) => res.data);
+                .then((res) => res.data.data);
         },
     });
 

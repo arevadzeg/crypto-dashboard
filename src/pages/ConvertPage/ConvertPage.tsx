@@ -25,11 +25,11 @@ const CoinPage = () => {
         result: string;
     } | null>(null);
 
-    const coins = coinsData?.data || [];
+    const coins = coinsData || [];
 
     useEffect(() => {
         calculateConversion();
-    }, [sourceCoinId, targetCoinId, amount]);
+    }, [sourceCoinId, targetCoinId, amount, coins]);
 
     const calculateConversion = () => {
         if (!sourceCoinId || !targetCoinId) return;

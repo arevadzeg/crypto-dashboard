@@ -3,6 +3,7 @@ import { Skeleton } from 'antd';
 import { useGetCoin } from '../../../../api/services/coin/useGetCoin';
 import styles from './pricePageHeader.module.scss';
 import formatCurrencyPrice from '../../../../utils/formatCurrencyPrice';
+import CurrencyLogo from '../../CurrencyLogo/CurrencyLogo';
 
 const PricePageHeader = () => {
     const { coinId } = useParams();
@@ -25,7 +26,7 @@ const PricePageHeader = () => {
         <div className={styles.headerWrapper}>
             <div>
                 <h1 className={styles.mainHeader}>
-                    {coinInfo.name} Price ({coinInfo.symbol})
+                    <CurrencyLogo id={coinInfo.symbol} alt={coinInfo.symbol} height={40} width={40} /> {coinInfo.name} Price ({coinInfo.symbol})
                 </h1>
                 <h3 className={styles.subHeader}>
                     {coinInfo.symbol} to <span className={styles.currencyHighlight}>USD</span>:

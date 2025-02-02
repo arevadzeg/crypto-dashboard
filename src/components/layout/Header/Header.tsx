@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router';
 import styles from './Header.module.scss';
 
+
+const HEADER_LIST = [
+    { label: "Dashboard", link: "/" },
+    { label: "Convert", link: "/convert/btc/usdt" },
+    { label: "Price", link: "/price/bitcoin" }
+
+
+]
+
 const Header: React.FC = () => {
     return (
         <header className={styles.header}>
@@ -12,16 +21,11 @@ const Header: React.FC = () => {
             </div>
             <nav>
                 <ul className={styles.navList}>
-                    <li>
-                        <Link to="/dashboard" className={styles.navLink}>
-                            Dashboard
+                    {HEADER_LIST.map((item) => <li key={item.link} >
+                        <Link to={item.link} className={styles.navLink}>
+                            {item.label}
                         </Link>
-                    </li>
-                    <li>
-                        <Link to="/conversion" className={styles.navLink}>
-                            Conversion
-                        </Link>
-                    </li>
+                    </li>)}
                 </ul>
             </nav>
         </header>

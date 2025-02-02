@@ -18,7 +18,7 @@ interface ConverionCardProps {
 
 const ConverionCard = ({ direction, sourceCoinId, setSourceCoinId, setAmount, amount, readOnly = false }: ConverionCardProps) => {
     const { data: coinsData } = useGetCoins();
-    const coins = coinsData?.data || [];
+    const coins = coinsData || [];
     const targetCoin = coins.find(c => c.symbol === sourceCoinId) as Coin;
 
     const max = MAX_TRADE_AMMOUNT_IN_USD / Number(targetCoin?.priceUsd || 1);
@@ -37,6 +37,7 @@ const ConverionCard = ({ direction, sourceCoinId, setSourceCoinId, setAmount, am
             </div>
             <div className={styles.inputGroup}>
                 <ModalSelect
+                    symbol={targetCoin.symbol}
                     options={coins}
                     value={sourceCoinId}
                     onChange={setSourceCoinId}

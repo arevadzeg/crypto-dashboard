@@ -18,7 +18,7 @@ const TIME_RANGE_CONFIG: Record<TimeRange, { days: number; interval: string }> =
 
 const PriceChart = () => {
     const { coinId } = useParams();
-    const [selectedRange, setSelectedRange] = useState<TimeRange>("30D");
+    const [selectedRange, setSelectedRange] = useState<TimeRange>(TIME_RANGES[0]);
 
     const { data: coinHistory, isFetching } = useGetCoinHistory(
         coinId ?? "",
@@ -29,8 +29,8 @@ const PriceChart = () => {
     const isPriceChartLoading = isFetching || !coinHistory
 
 
-    const minPrice = coinHistory ? Math.min(...coinHistory.map((entry) => Number(entry.priceUsd))) - 10 : 0;
-    const maxPrice = coinHistory ? Math.max(...coinHistory.map((entry) => Number(entry.priceUsd))) + 10 : 0;
+    const minPrice = coinHistory ? Math.min(...coinHistory.map((entry) => Number(entry.priceUsd))) + 1 : 0;
+    const maxPrice = coinHistory ? Math.max(...coinHistory.map((entry) => Number(entry.priceUsd))) - 1 : 0;
 
     return (
         <div className={styles.chartContainer}>
