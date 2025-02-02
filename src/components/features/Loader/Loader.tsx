@@ -3,8 +3,8 @@ import styles from "./loader.module.scss";
 interface LoaderProps {
     children: JSX.Element;
     isLoading: boolean;
-    height?: number;
-    width?: number;
+    height?: number | string;
+    width?: number | string;
 }
 
 const Loader = ({ children, isLoading = false, height = 40, width = 120 }: LoaderProps) => {

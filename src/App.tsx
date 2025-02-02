@@ -10,8 +10,12 @@ import Header from "./components/layout/Header/Header";
 import './index.scss'
 import PagePrice from "./pages/PricePage/PricePage";
 import { ConfigProvider } from "antd";
+import { useCoinCapWebSocket } from "./api/services/socket/useCoinCapWebSocket";
 
 function App() {
+
+  useCoinCapWebSocket()
+
 
   return (
     <>
@@ -21,8 +25,16 @@ function App() {
           Skeleton: {
             color: "#303030",
             colorGradientEnd: "#424242"
-          }
-        }
+          },
+          Button: {
+            colorPrimary: '#FCD535',
+            primaryColor: "#202630",
+            colorPrimaryHover: "#FCD535",
+            colorPrimaryActive: "#F0B90B",
+            fontSize: 16,
+            fontWeight: 500
+          },
+        },
       }}>
         <Router>
           <Header />

@@ -64,11 +64,13 @@ $swap-button-size:42px;
 
   .convertButton{
     height: 48px;
-    background-color: $color-BtnBg;
-    color: $color-TextOnYellow;
-    font-size: $font-size-base;
-    font-weight: $font-weight-semi-bold;
     width: $content-width;
+  }
+
+
+  .disabled{
+    pointer-events: none;
+    opacity: 0.7;
   }
 
 

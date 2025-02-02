@@ -2,9 +2,19 @@ import { useEffect } from 'react';
 
 import { useWebSocketStore } from "../../../store/websocketStore";
 import { useGetCoins } from "../coin/useGetCoins";
+import { useQueryClient } from '@tanstack/react-query';
 
 export const useCoinCapWebSocket = () => {
     const { data: coins } = useGetCoins();
+
+
+
+    const queryClient = useQueryClient();
+
+    // Fetch all cached queries
+    const cachedQueries = queryClient.getQueryCache().getAll();
+
+    console.log('cachedQueries', cachedQueries);
 
     useEffect(() => {
         if (!coins?.data) return;

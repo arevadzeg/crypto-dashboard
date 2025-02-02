@@ -3,7 +3,6 @@ import { Tag } from "antd";
 import { useGetCoins } from "../../api/services/coin/useGetCoins";
 import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinHistory";
 import { useWebSocketStore } from "../../store/websocketStore";
-import { useCoinCapWebSocket } from "../../api/services/socket/socket";
 
 const calculatePriceChange = (
     history: Record<string, any>,
@@ -37,7 +36,6 @@ const Overview = () => {
     const { prices } = useWebSocketStore();
 
 
-    useCoinCapWebSocket()
 
     const data = coinsData?.data.map(coin => {
         const wsPrice = parseFloat(prices[coin.id]);

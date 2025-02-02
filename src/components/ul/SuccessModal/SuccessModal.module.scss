@@ -35,15 +35,6 @@
 }
 
 .modalButton {
-  // TODO RE USE
   padding: 8px 16px;
-  background-color: $color-BtnBg;
-  color: $color-TextOnYellow;
-  font-size: $font-size-base;
-  font-weight: $font-weight-semi-bold;
-
-  &:hover {
-    background-color: $color-primaryHover;
-  }
 }
 
