@@ -49,7 +49,7 @@ components/ – Contains five subfolders:
   
   ui/ – Reusable UI components like buttons, inputs, and modals.
   
-  features/ – Contains components that are reused across the application.
+  shared/ – Contains components that are reused across the application.
   
   pages/ – Includes subfolders for each route (e.g., convertPage/, pricePage/), containing components specific to those pages.
 
