@@ -3,7 +3,7 @@ import { Skeleton } from 'antd';
 import { useGetCoin } from '../../../../api/services/coin/useGetCoin';
 import styles from './pricePageHeader.module.scss';
 import formatCurrencyPrice from '../../../../utils/formatCurrencyPrice';
-import CurrencyLogo from '../../../features/CurrencyLogo/CurrencyLogo';
+import CurrencyLogo from '../../../shared/CurrencyLogo/CurrencyLogo';
 
 const PricePageHeader = () => {
     const { coinId } = useParams();

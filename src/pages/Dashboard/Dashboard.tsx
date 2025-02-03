@@ -3,8 +3,8 @@ import { useGetCoins } from "../../api/services/coin/useGetCoins";
 import { useGetCoinsHistory } from "../../api/services/coinHistory/useGetCoinsHistory";
 import { useWebSocketStore } from "../../store/websocketStore";
 import { useNavigate } from "react-router";
-import Loader from "../../components/features/Loader/Loader";
-import CurrencyLogo from "../../components/features/CurrencyLogo/CurrencyLogo";
+import Loader from "../../components/shared/Loader/Loader";
+import CurrencyLogo from "../../components/shared/CurrencyLogo/CurrencyLogo";
 import styles from './dashboard.module.scss'
 
 const calculatePriceChange = (

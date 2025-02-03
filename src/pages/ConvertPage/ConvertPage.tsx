@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import styles from './ConvertPage.module.scss';
 import { useGetCoins } from '../../api/services/coin/useGetCoins';
 import { useParams } from 'react-router';
-import Loader from '../../components/features/Loader/Loader';
+import Loader from '../../components/shared/Loader/Loader';
 import formatCurrencyPrice from '../../utils/formatCurrencyPrice';
 import ConvertPageHeader from '../../components/pages/ConvertPage/ConvertPageHeader/ConvertPageHeader';
 import ConvertPageNotificaitionModal from '../../components/pages/ConvertPage/ConvertPageNotificaitionModal/ConvertPageNotificaitionModal';

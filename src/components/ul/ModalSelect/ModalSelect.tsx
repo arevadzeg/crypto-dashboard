@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import styles from './ModalSelect.module.scss';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Coin } from '../../../api/services/coin/coinType';
-import CurrencyLogo from '../../features/CurrencyLogo/CurrencyLogo';
+import CurrencyLogo from '../../shared/CurrencyLogo/CurrencyLogo';
 
 
 interface ModalSelectProps {

@@ -5,7 +5,7 @@ import { useGetCoinHistory } from "../../../../api/services/coinHistory/useGetCo
 import formatCurrencyPrice from "../../../../utils/formatCurrencyPrice";
 import styles from "./priceChart.module.scss";
 import formatTime from "../../../../utils/formatTime";
-import Loader from "../../../features/Loader/Loader";
+import Loader from "../../../shared/Loader/Loader";
 
 const TIME_RANGES = ["1D", "7D", "30D"] as const;
 type TimeRange = typeof TIME_RANGES[number];
