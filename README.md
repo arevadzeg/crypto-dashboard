@@ -24,4 +24,28 @@ https://www.loom.com/share/b0d2a75536a842adbaffe1ec11b03829?sid=1660ad2e-843f-46
 
 ************************************************************************
 
-Folder structure
+For styling, I use SCSS modules and have taken color variables from Binance to maintain a cohesive design. SCSS modules help prevent class name conflicts and keep class names simple and manageable.
+
+For state management and data fetching, I chose:
+
+React Query (@tanstack/react-query) for efficient caching, automatic updates, and reducing the need for a global state manager.
+Zustand, connected to a service worker, ensuring real-time updates for the latest prices.
+For UI and data visualization:
+
+Recharts for its simplicity in handling charts and data visualization.
+Ant Design (Antd) for pre-styled, ready-to-use UI components.
+Folder Structure
+components/ – Contains five subfolders:
+
+svg/ – Components that return SVG elements.
+layout/ – Includes header, footer, sidebar, and other structural components.
+ui/ – Reusable UI components like buttons, inputs, and modals.
+features/ – Contains components that are reused across the application.
+pages/ – Includes subfolders for each route (e.g., convertPage/, pricePage/), containing components specific to those pages.
+api/ – Manages API interactions:
+
+apiClient/ – Handles API requests.
+endpoints/ – Stores endpoint definitions.
+services/ – Groups hooks by functionality, e.g., a coin/ folder containing useGetCoin, useGetCoins, and coinType.
+
+
