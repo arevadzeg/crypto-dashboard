@@ -42,15 +42,23 @@ Axios
 ************************************************************************
 Folder Structure
 components/ – Contains five subfolders:
+
   svg/ – Components that return SVG elements.
+  
   layout/ – Includes header, footer, sidebar, and other structural components.
+  
   ui/ – Reusable UI components like buttons, inputs, and modals.
+  
   features/ – Contains components that are reused across the application.
+  
   pages/ – Includes subfolders for each route (e.g., convertPage/, pricePage/), containing components specific to those pages.
 
 api/ – Manages API interactions:
+
   apiClient/ – Handles API requests.
+  
   endpoints/ – Stores endpoint definitions.
+  
   services/ – Groups hooks by functionality, e.g., a coin/ folder containing useGetCoin, useGetCoins, and coinType.
 
 pages/ – Stores route-specific components, where each folder represents a page (e.g., convertPage/, pricePage/).
