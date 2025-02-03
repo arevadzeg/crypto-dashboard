@@ -53,6 +53,8 @@ components/ – Contains five subfolders:
   
   pages/ – Includes subfolders for each route (e.g., convertPage/, pricePage/), containing components specific to those pages.
 
+************************************
+
 api/ – Manages API interactions:
 
   apiClient/ – Handles API requests.
@@ -60,6 +62,8 @@ api/ – Manages API interactions:
   endpoints/ – Stores endpoint definitions.
   
   services/ – Groups hooks by functionality, e.g., a coin/ folder containing useGetCoin, useGetCoins, and coinType.
+
+************************************
 
 pages/ – Stores route-specific components, where each folder represents a page (e.g., convertPage/, pricePage/).
 
