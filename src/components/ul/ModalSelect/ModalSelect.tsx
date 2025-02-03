@@ -20,12 +20,12 @@ const ModalSelect = ({ options, value, onChange, symbol, ...props }: ModalSelect
 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<Coin | undefined>(
-        () => options.find(opt => opt.symbol === value)
-    );
+    // const [, setSelectedOption] = useState<Coin | undefined>(
+    //     () => options.find(opt => opt.symbol === value)
+    // );
 
     const handleOptionSelect = (option: Coin) => {
-        setSelectedOption(option);
+        // setSelectedOption(option);
         onChange?.(option.symbol);
         setIsModalOpen(false);
     };
