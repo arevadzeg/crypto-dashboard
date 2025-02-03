@@ -6,7 +6,7 @@ import App from './App.tsx';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity,
+      staleTime: 60000, // 1 MIN
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
       retry: false

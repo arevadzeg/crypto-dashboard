@@ -6,10 +6,11 @@ import classNames from 'classnames';
 import styles from './ConvertPage.module.scss';
 import { useGetCoins } from '../../api/services/coin/useGetCoins';
 import { useParams } from 'react-router';
-import ConverionCard from '../../components/features/ConverionCard/ConverionCard';
-import SuccessModal from '../../components/ul/SuccessModal/SuccessModal';
 import Loader from '../../components/features/Loader/Loader';
 import formatCurrencyPrice from '../../utils/formatCurrencyPrice';
+import ConvertPageHeader from '../../components/pages/ConvertPage/ConvertPageHeader/ConvertPageHeader';
+import ConvertPageNotificaitionModal from '../../components/pages/ConvertPage/ConvertPageNotificaitionModal/ConvertPageNotificaitionModal';
+import ConverionCard from '../../components/pages/ConvertPage/ConverionCard/ConverionCard';
 
 const CoinPage = () => {
     const { convertFromId, convertToId } = useParams();
@@ -82,13 +83,7 @@ const CoinPage = () => {
     return (
         <Loader isLoading={isLoading} height={'80vh'} width={'100vw'}>
             <div>
-                <div className={styles.pageHeaderWrapper}>
-                    <h2 className={styles.mainHeader}>Binance Convert</h2>
-                    <h4 className={styles.subHeader}>
-                        Instant Price | Guaranteed Price | Any Pair
-                    </h4>
-                </div>
-
+                <ConvertPageHeader />
                 <div className={styles.conversionForm}>
                     <div className={styles.conversionCards}>
                         <ConverionCard
@@ -135,22 +130,7 @@ const CoinPage = () => {
                         Convert Now
                     </Button>
                 </div>
-
-                <SuccessModal
-                    title="🎉 Conversion Successful! 🎉"
-                    open={isModalVisible}
-                    onCancel={() => setIsModalVisible(false)}
-                    content={
-                        conversionResult && (
-                            <p>
-                                Successfully converted {conversionResult.amount} {conversionResult.from} to {' '}
-                                <strong>
-                                    {conversionResult.result} {conversionResult.to}
-                                </strong>
-                            </p>
-                        )
-                    }
-                />
+                <ConvertPageNotificaitionModal conversionResult={conversionResult} isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
             </div>
         </Loader>
     );

@@ -4,8 +4,8 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "rec
 import { useGetCoinHistory } from "../../../../api/services/coinHistory/useGetCoinHistory";
 import formatCurrencyPrice from "../../../../utils/formatCurrencyPrice";
 import styles from "./priceChart.module.scss";
-import Loader from "../../Loader/Loader";
 import formatTime from "../../../../utils/formatTime";
+import Loader from "../../../features/Loader/Loader";
 
 const TIME_RANGES = ["1D", "7D", "30D"] as const;
 type TimeRange = typeof TIME_RANGES[number];

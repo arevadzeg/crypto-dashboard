@@ -1,11 +1,13 @@
 import { useEffect, useMemo } from "react";
-import { Coin } from "../../../api/services/coin/coinType";
-import { useGetCoins } from "../../../api/services/coin/useGetCoins";
-import { MAX_TRADE_AMOUNT_IN_USD, MIN_TRADE_AMOUNT_IN_USD } from "../../../constants/constants";
-import formatMinMaxValue from "../../../utils/formatMinMaxValue";
-import InvisibleInput from "../../ul/InvisibleInput/InvisibleInput";
-import ModalSelect from "../../ul/ModalSelect/ModalSelect";
+
+
 import styles from './converionCard.module.scss';
+import { useGetCoins } from "../../../../api/services/coin/useGetCoins";
+import { Coin } from "../../../../api/services/coin/coinType";
+import ModalSelect from "../../../ul/ModalSelect/ModalSelect";
+import formatMinMaxValue from "../../../../utils/formatMinMaxValue";
+import { MAX_TRADE_AMOUNT_IN_USD, MIN_TRADE_AMOUNT_IN_USD } from "../../../../constants/constants";
+import InvisibleInput from "../../../ul/InvisibleInput/InvisibleInput";
 
 interface ConverionCardProps {
     direction: 'From' | "To";

@@ -1,0 +1,37 @@
+
+.mainHeader{
+    font-size: 48px;
+    color:$color-textPrimary;
+    margin:0;
+  }
+  
+  .subHeader{
+    color:$color-textPrimary;
+    margin-top: 0;
+  
+  }
+  
+.pageHeaderWrapper{
+    padding: 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  
+  }
+
+
+  @media screen and (max-width: $breakpoint-sm) {
+    $content-width: 100%;
+  
+    .pageHeaderWrapper {
+      padding: 20px;
+    }
+  
+    .mainHeader {
+      font-size: 32px;
+    }
+  
+    .subHeader {
+      font-size: 16px;
+    }
+  }

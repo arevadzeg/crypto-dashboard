@@ -15,7 +15,7 @@ interface ModalSelectProps {
 }
 
 // TODO MAKE MODE DYNAMIC
-
+// UNFORTUNATELY, I DIDN'T HAVE ENOUGH TIME. THIS COMPONENT IS CURRENTLY A NOT RE USABLE (NOT GENERAL).
 const ModalSelect = ({ options, value, onChange, symbol, ...props }: ModalSelectProps) => {
 
 

@@ -114,8 +114,11 @@ const Dashboard = () => {
 
 
     return (
-        <>
-            <Loader isLoading={isTableDataLoading} height={'80vh'} width={'100vw'}>
+        <Loader isLoading={isTableDataLoading} height={'80vh'} width={'100vw'}>
+            <>
+
+                <h1 className={styles.mainHeader}>Markets Overview</h1>
+
                 <Table
                     columns={columns}
                     dataSource={data}
@@ -126,8 +129,8 @@ const Dashboard = () => {
                     })}
                     className={styles.table}
                 />
-            </Loader>
-        </>
+            </>
+        </Loader>
     );
 }
 
